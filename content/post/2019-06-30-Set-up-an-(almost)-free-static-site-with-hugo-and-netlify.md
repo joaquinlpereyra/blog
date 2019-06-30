@@ -13,15 +13,13 @@ So, first things first. We need to get a domain. This is the "almost" free part,
 
 I used [Name.com](https://name.com) but this turned out to be a bad decision, I'd use Namecheap now.
 
-Everything works
-
 ## Set up your repository
 
 I created a repository on Github, but Netlify supports Gitlab and other options too. Mine is a simple [Github repository](https://github.com/joaquinlpereyra/blog).
 
 ## Download Hugo
 
-[Install Hugo](https://gohugo.io/getting-started/installing/). Mind which version you install, it'll be important in a while.
+[Download and install Hugo](https://gohugo.io/getting-started/installing/). Mind which version you install, it'll be important in a while.
 
 ## Create a new site in Netlify.
 
