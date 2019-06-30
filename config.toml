@@ -1,9 +1,7 @@
-baseurl = "/"
+baseurl = "https://joaquin.site/"
 languageCode = "en-us"
-title = "A minimal Hugo website"
+title = "how does anything still work?"
 theme = "hugo-xmin"
-googleAnalytics = ""
-disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 footnotereturnlinkcontents = "↩"
 
@@ -16,21 +14,9 @@ footnotereturnlinkcontents = "↩"
     url = "/"
     weight = 1
 [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2
-[[menu.main]]
-    name = "Categories"
-    url = "/categories/"
-    weight = 3
-[[menu.main]]
-    name = "Tags"
-    url = "/tags/"
-    weight = 4
-[[menu.main]]
     name = "Subscribe"
     url = "/index.xml"
 
 [params]
-    description = "A website built through Hugo and blogdown."
-    footer = "&copy; [Yihui Xie](https://yihui.name) 2017 -- 2019 | [Github](https://github.com/yihui) | [Twitter](https://twitter.com/xieyihui)"
+    description = "Joaquin's personal ramblings"
+    footer = "&copy; [Joaquin](https://joaquin.site) | [Github](https://github.com/joaquinlpereyra) | [Linkedin](https://linkedin.com/joaquinlpereyra)"
