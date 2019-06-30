@@ -1,6 +1,6 @@
 baseurl = "https://joaquin.site/"
 languageCode = "en-us"
-title = "how does anything still work?"
+title = "personal ramblings"
 theme = "hugo-xmin"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 footnotereturnlinkcontents = "↩"
