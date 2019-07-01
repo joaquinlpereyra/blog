@@ -14,6 +14,10 @@ footnotereturnlinkcontents = "↩"
     url = "/"
     weight = 1
 [[menu.main]]
+    name = "Public Key"
+    url = "/key/"
+    weight = 2
+[[menu.main]]
     name = "Subscribe"
     url = "/index.xml"
 
