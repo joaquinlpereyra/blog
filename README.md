@@ -1,4 +1,4 @@
 Blog
 ===
 
-My simple, personal blog.
+A blog / site for Agaricus Security.

@@ -29,6 +29,3 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
     name = "Public Key"
     url = "/key/"
     weight = 3
-
-[params]
-    footer = "&copy; [Joaquin](https://agaricus.xyz) | [Github](https://github.com/joaquinlpereyra) | [Linkedin](https://www.linkedin.com/in/joaquinlpereyra/)"
