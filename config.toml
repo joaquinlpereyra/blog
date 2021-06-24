@@ -8,7 +8,7 @@ theme = "hugo-tanka"
 enableEmoji = false
 hasCJKLanguage = false
 
-pygmentsstyle = "vs"
+pygmentsstyle = "tango"
 pygmentscodefences = true
 
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
@@ -19,7 +19,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
   highlightjs = true
   highlightjslanguages = ["r", "python", "golang"]
   uselatex = true
-  progressively = false
+  progressively = true
 
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"
