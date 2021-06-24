@@ -2,9 +2,9 @@
 title: Public Key
 ---
 
-You may contact me encrypting your messages with this key. 
+You may encrypt your message when contacting Agaricus using this key. 
 
-If you for any reason doubt a message is actually from me, please do request an encrypted version of it.
+This may also be used to prove authenticity of a message of ours.
 
 ## Key
 ```
