@@ -1,6 +1,6 @@
-baseurl = "https://joaquin.site/"
+baseurl = "https://agaricux.xyz/"
 languageCode = "en-us"
-title = "personal ramblings"
+title = "agaricus"
 theme = "hugo-xmin"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 footnotereturnlinkcontents = "↩"
@@ -22,5 +22,4 @@ footnotereturnlinkcontents = "↩"
     url = "/index.xml"
 
 [params]
-    description = "Joaquin's personal ramblings"
-    footer = "&copy; [Joaquin](https://joaquin.site) | [Github](https://github.com/joaquinlpereyra) | [Linkedin](https://www.linkedin.com/in/joaquinlpereyra/)"
+    footer = "&copy; [Joaquin](https://agaricus.xyz) | [Github](https://github.com/joaquinlpereyra) | [Linkedin](https://www.linkedin.com/in/joaquinlpereyra/)"
