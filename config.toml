@@ -1,4 +1,4 @@
-baseurl = "https://agaricus.xyz"
+baseurl = "https://agaricus.xyz/"
 title = "Agaricus Security"
 author = "Joaquin Pereyra"
 canonifyurls = true
