@@ -1,5 +1,5 @@
 ---
-title: 'Proof of Sstake: how does it work anyway'
+title: 'Proof of Stake: how does it work anyway'
 date: 2022-09-02T19:12:46-03:00
 draft: false
 meta_img: "images/image.png"
