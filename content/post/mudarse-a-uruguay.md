@@ -37,10 +37,10 @@ Una vez que tenés la cedula de identidad provisaria, tenes que inscribir tu par
 
 Solo puedo hablar de mi experiencia. 
 
-Tuve mi cita en el consulado de Uruguay en Buenos Aires.
-+2 meses: buquebús de mudanza.
-+1 semana: presenté homologación de vacunas.
-+15 días: retiro mi cédula provisoria luego de ir un par de veces a DNIC a hacer papeleo.
+- Tuve mi cita en el consulado de Uruguay en Buenos Aires.
+- +2 meses: buquebús de mudanza.
+- +1 semana: presenté homologación de vacunas.
+- +15 días: retiro mi cédula provisoria luego de ir un par de veces a DNIC a hacer papeleo.
 
 Entonces entre que arranqué el trámite en el consulado y tuve mi cédula fueron más o menos 3 meses. Sin embargo, el tiempo puede ser menor: recuerden que recién presentada la homologación de vacunas se considera terminado.
 
