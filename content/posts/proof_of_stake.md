@@ -13,31 +13,17 @@ With **The Merge** around the corner (I've read posts from 2014 starting with ex
 
 This is basically my version of _what the heck is proof of stake and how does it work anyway_, particularly the how does it work part. It goes over Tendermint but focuses on Gasper, which is what Ethereum will implement.
 
-[The piece](https://github.com/joaquinlpereyra/blog/raw/master/content/pdf/Proof%20of%20Stake.pdf) is intended to be kind-of-readable but still very in depth for people who already know how blockchains and proof of work function. 
+If you prefer, there is a [PDF version](https://github.com/joaquinlpereyra/blog/raw/master/content/pdf/Proof%20of%20Stake.pdf) of this article.
 
-It is in PDF, because damn me there are some formulas in there which I don't know how to markdown.
+It is far from perfect, and at times it skews too much into _just notes for myself_. If you have any questions about it just ping me at [@0xmatebabe](https://twitter.com/0xmatebabe) on Twitter.
 
-It is far from perfect, and at times it skews too much into _just notes for myself_. If you have any questions about it just ping me at @0xmatebabe on Twitter, we can discuss them.
+We start by analyzing consensus itself, listing the implementation strategies of proof-of-stake and then reviewing GASPER in more detail.
 
-A [[Consensus]] mechanism for descentralized, distributed systems. The major competition to [[Proof of Work]].
+# What is consensus anyway?
 
-**Sources:**
-- [Cosmo Network comparison of Casper and Tendermint](account_tx_rate_limit_algorithm)
-* [Combining GHOST and Casper (Vitalik et. al.)](https://arxiv.org/pdf/2003.03052.pdf)
-
-**Open questions**
-
-_Q_: Why is it always _1/3_ of validators?
-A: Answer can be found in the paper _Asynchronous consensus and broadcast protocols_ dealing with _Practical Byzantine Fault Tolerance_.
-
-In proof of work, creating a block is extremely expensive. In proof of stake, it is essentially free: you only need to sign it. All the effort in proof of stake is in making it costly to create an invalid or malicious block.
-
-> Instead of using computational power to propose blocks, proposing blocks is essentially free. In exchange, we need an additional layer of mathematical theory to prevent perverse incentives that arise when we make proposing blocks “easy.”
-> Combining GHOST and Casper
-
-Main ingredients: 
-1. A [[Fork Choice Rule]]: a function $fork()$ that when given a _view_  $G$ (ie, a series of blocks) can identify a canonical chain with its single leaf node (ie: latest block) $B$. Intuitively: a rule for validators to choose the right chain when presented with conflicting blocks.
-2. A [[Finality]] definition: a function $fork$ that given $G$ will return a set $F(G)$ of _finalized_ blocks which will never be removed from the canonical chain.
+Two main ingredients: 
+1. A **Fork Choice Rule**: a function $fork()$ that when given a _view_  $G$ (ie, a series of blocks) can identify a canonical chain with its single leaf node (ie: latest block) $B$. Intuitively: a rule for validators to choose the right chain when presented with conflicting blocks.
+2. A **Finality** definition: a function $fork$ that given $G$ will return a set $F(G)$ of _finalized_ blocks which will never be removed from the canonical chain.
 3. Slashing conditions: conditions that honest validators will never break and dishonest validators can be provably identified. 
 
 Note that a consensus mechanism can have:
@@ -46,35 +32,38 @@ Note that a consensus mechanism can have:
 2. **Liveness**: if the $F(G)$ actually _grows_. Liveness can be plausible (impossible to become deadlocked) or probabilistic (if it liveness needs some probabilistic assumptions).
 
 # Pitfalls of PoS
-- **Nothing at stake**: validators have no incentive to vote for a specific blob of data (in [[Blockchain]], a block). If several choices are present, the rational behavior is to vote for all of them to be assured I get the reward for voting on the winning choice. Solved by [[#Slashing]].
-- **Long range attacks**: if I can remove my deposit, I in collution with other validators remove it... then create a fork from the point where I was still a validator (why not? what are you gonna slash?). Here enters the embrace of [weak subjectivity](https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/) by PoS, which introduces _subjectivty_ into the protocol: the biggest chain _will not be always that with most work or stake_, but some other considerations are taken into account: validators node must currently have a stake, etc.
+- **Nothing at stake**: validators have no incentive to vote for a specific blob of data (in blockchain, a block). If several choices are present, the rational behavior is to vote for all of them to be assured I get the reward for voting on the winning choice. This is solved by slashing.
+- **Long range attacks**: if I can remove my deposit, I can, in collusion with other validators, remove it... then create a fork from the point where I was still a validator (why not? what are you gonna slash?). Here enters the embrace of [weak subjectivity](https://blog.ethereum.org/2014/11/25/proof-stake-learned-love-weak-subjectivity/) by PoS, which introduces _subjectivty_ into the protocol: the biggest chain _will not be always that with most work or stake_, but some other considerations are taken into account: validators node must currently have a stake, etc.
+
 - **Cartel formation**: few validators with a lot of capital will outweight smaller ones. Tendermint basically accepts this. Casper protocol is the only construction which tries to fight this with in-consensus censorship-resistance incentives _(which ones?)_
+
 # Implementation strategies
 Two main strategies to implement PoS. 
+
 ## Byzantine Fault Tolerant Proof of Work
-Chooses consistency over availability: some transactions may not get processed, but you sure as hell will get a consistent state. [[Tendermint]] is an example of this type of [[Consensus]].
+Chooses consistency over availability: some transactions may not get processed, but you sure as hell will get a consistent state. Tendermint is an example of this type of consensus.
 
-A validator is assigned the right to propose a block at random. Commiting that block needs a supermajority of 2/3 of validators (_why this number?_). 
+A validator is assigned the right to propose a block at random. Committing that block needs a supermajority of 2/3 of validators. 
 
-As an example of consistency over availability: if more than 2/3 of validators in [[Tendermint]] are offline, the network may halt: there's not enough voters to vote for the next block.
+As an example of consistency over availability: if more than 2/3 of validators in Tendermint are offline, the network may halt: there's not enough voters to vote for the next block.
 
 There are no forks on Tendermint based blockchains: forks are the result of two miners finding a block at the same time. With a single validator proposing a node, this is just impossible.
 
 This may seem like a silly problem, but actually it is quite bad: if a network upgrade makes 2/3 of validators offline, the rest of validators can't continue with the old chain!
 
 ## Chain-based Proof of Work
-They simulator more directly [[Proof of Work]]. The new block is hash-linked to the parent block. [[Casper Protocol]] is of this kind. It favor availability over consistency.
+They simulate more directly proof of work. The new block is hash-linked to the parent block. Casper Protocol is of this kind. It favor availability over consistency.
 
 As of 2021, I don't see many differences with Tendermint. Seems like they have converged? Maybe.
 
 # GASPER
 
-The objective of this piece is to gain intuition on how Ethereum's [[Beacon Chain]] works for the reader familiar with proof of work blockchains, such as current Ethereum (as of April 2022) or Bitcoin. 
+The protocol chosen for Ethereum's beacon chain. The objective here is to gain intuition on how the beacon chain works and it is assumed the reader is already familiar with proof of work blockchains.
 
 ### Time
-A key difference is the introduction of _time_. In [[Proof of Work]], the blockchain itself can be seen as a malfunctioning clock, where each block is the quantum of time. Event are measured in their block-time. This works because [[Proof of Work]] requires _work_, and because that work should be relatively difficult, that _work_ requires physical time. 
+A key difference is the introduction of _time_. In proof of work, the blockchain itself can be seen as a malfunctioning clock, where each block is the quantum of time. Event are measured in their block-time. This works because proof of work requires _work_, and because that work should be relatively difficult, that _work_ requires physical time. 
 
-In [[Proof of Stake]], creating blocks is trivial. You actually just ensemble the data and off it goes. So we actually need to introduce clocks into the blockchain. This is, to me, is one of the main differences one should keep in mind.
+In proof of stake, creating blocks is trivial. You actually just ensemble the data and off it goes. So we actually need to introduce clocks into the blockchain. This is, to me, is one of the main differences one should keep in mind.
 
 As mentioned above, Gasper introduces time with _slots_. 
 
@@ -90,7 +79,7 @@ Every time an _epoch_ starts, a new committee is chosen at random from the set o
 Every time an _slot_ starts, one committee member must propose a block by computing the canonical head of the chain at that slot. The block itself is fairly similar to those in proof of work, but for two _details_:
 
 1. It contains a filed _newttests_, attestations that the proposer has accepted and haven't appeared in their view of the blockchain yet.
-2. Arbitrary data. This is actually a fairly important detail, not for the protocol, but for Ethereum: this arbitrary data is, in the [[Beacon Chain]], the hash of the head of the block of the execution layer! (See [Eth1Data](https://beaconcha.in/block/3529978) on the Beacon Chain Explorer)
+2. Arbitrary data. This is actually a fairly important detail, not for the protocol, but for Ethereum: this arbitrary data is, in the beacon chain, the hash of the head of the block of the execution layer! (See [Eth1Data](https://beaconcha.in/block/3529978) on the Beacon Chain Explorer)
 
 ### Attestations
 So, what are exactly attestations? Intuitively, attestations are messages containing a block from each validators view. But they also contain a so-called _checkpoint edge_, a transition from _epoch boundaries_. These are used for justification and finalization.
@@ -128,14 +117,14 @@ This is again different from [Tendermint consensus](https://docs.tendermint.com/
 
 Another important point is that absolutely no timeouts is assumed to guarantee the consistency promises made, and only a _partially synchronous_ assumption is made to discuss liveness. That is, it only needs for timeouts to _exists_ but they are not set beforehand.
 
-All in all, I think this is a good base to start forming an intuition on how Ethereum is gonna work after The Merge. The [[Beacon Chain]] has been working for a while under this model already and it is very interesting to [explore its blocks](https://beaconcha.in/). The rest of this doc are my notes while reading the [Combining GHOST And Casper](https://arxiv.org/pdf/2003.03052.pdf) paper by Vitalik et al. As notes tend to go, I think they are fairly organized, but there may be mistakes in my understanding of some topics and repeated information. You have been warned. They are probably best read while reading the paper itself. 
+All in all, I think this is a good base to start forming an intuition on how Ethereum is gonna work after The Merge. The beacon chain has been working for a while under this model already and it is very interesting to [explore its blocks](https://beaconcha.in/). The rest of this doc are my notes while reading the [Combining GHOST And Casper](https://arxiv.org/pdf/2003.03052.pdf) paper by Vitalik et al. As notes tend to go, I think they are fairly organized, but there may be mistakes in my understanding of some topics and repeated information. You have been warned. They are probably best read while reading the paper itself. 
 
 ## CASPER  FFG
 Or **Casper the Friendly Finality Gadget**. Defined _justification_ and _finalization_.
 
 ### Definitions
 - Every block has a _height_.
-- _Checkpoint_ blocks are defined which are blocks whose height is a multiple of a constant $H$ (in [[Ethereum2]], $H = 100$). Checkpoint height $\frac{h(B)}{H}$is always an integer. Note that the subsets of checkpoint blocks also forms a subtree.
+- _Checkpoint_ blocks are defined which are blocks whose height is a multiple of a constant $H$ (in `Ethereum2`, $H = 100$). Checkpoint height $\frac{h(B)}{H}$is always an integer. Note that the subsets of checkpoint blocks also forms a subtree.
 - _Attestations_ are signed messsages (ie: blocks) containing _checkpoint edges_ $A \rightarrow B$ where A and B are checkpoint blocks. Each _attestation_ is a _vote_ to move from $A$ to $B$. Each attestation has a _weight_, the stake of the validator.
 - In each view of the blockchain $G$, there is a set of _justified_ and _finalized_ checkpoint blocks $J(G)$ and $F(G)$ where $F(G) \subset J(G) \subset G$. The genesis is always both justified and finalized.
 - A checkpoint block _B_ is _justified_ (by a _justified_ checkpoint block $A$) if _A_ is justified and there are _attestations_ voting for $A \rightarrow B$ with total weight 2/3 of the total stake. This is also called a _supermajority link_ from A to B.
@@ -147,11 +136,11 @@ Or **Casper the Friendly Finality Gadget**. Defined _justification_ and _finaliz
 ## GHOST
 Intuitively: the chain with most attestations is the correct one.
 
-## Combining [[#GHOST]] and [[#CASPER FFG]] to form [[#GASPER]]
+## Combining GHOST and CASPER FFG to form GASPER
 
-Back to [[#GASPER]] then: even though [[#CASPER FFG]] does not mention _slots_ or _epochs_, [[#GASPER]] does. Another important difference is that the same block may appear as a _checkpoint_ more than once (for different epochs). To disambiguate, one formally must refer to a [[#GASPER]] checkpoint as a pair $(B, e)$ where $B$ is the block and $e$ is the epoch.
+Back to GASPER then: even though CASPER FFG does not mention _slots_ or _epochs_, GASPER does. Another important difference is that the same block may appear as a _checkpoint_ more than once (for different epochs). To disambiguate, one formally must refer to a GASPER checkpoint as a pair $(B, e)$ where $B$ is the block and $e$ is the epoch.
 
-Another change is that [[#GASPER]] calls divides its validators _committees_ in each _epoch_, and one _committee_ is used per slot. In each slot, one _validator_ from the _committee_ proposes a block, and all member of the _committee_ attest to what they see as the head of the chain (in the best case, the proposed block) using the fork-choice rule _HLMD GHOST_ (a slight variation of [[#GHOST]]).
+Another change is that GASPER calls divides its validators _committees_ in each _epoch_, and one _committee_ is used per slot. In each slot, one _validator_ from the _committee_ proposes a block, and all member of the _committee_ attest to what they see as the head of the chain (in the best case, the proposed block) using the fork-choice rule _HLMD GHOST_ (a slight variation of GHOST).
 
 ### Epoch boundary
 
@@ -186,11 +175,11 @@ Two kinds of _committee_ work:
 
 Let's do the rounds of a slot $i$ from the point of view of _validator_ $V$:
 
-1. The _proposer_ (the first in the list of the committee) uses the [[Fork Choice Rule]] to find $B'$.
+1. The _proposer_ (the first in the list of the committee) uses the **Fork Choice Rule** to find $B'$.
 2. The _proposer_ proposes a block $B$ which is a message containing $slot(B) = i$ , $P(B) = B'$, $newattests(B)$ a set of pointer to _all_ attestations $V$ has accepted but have not been included in any previous blocks and some _implementation specific data_ (see **Note on fancyness**).
 3. Each _validator_ in the _committee_ computes $B'$ and publishes an _attestation $\alpha$_  which is a message containing: $slot(\alpha)=i$, $block(\alpha)=B'$ and a _checkpoint edge_ $LJ(\alpha) \rightarrow LE(\alpha)$. $LJ$ and $LE$ are _epoch boundary pairs_ in the view of the validator at time _i_ plus some amount of time due to delay. These functions are defined later.
 
-**Note on fancyness**: the paper wants to be fancy and say it doesn't care about the data, but as users we do. This is the `Eth1Data` found in the [[Beacon Chain]] implementations, and is extremely important as it tracks the execution layer results! So basically _what we now know as [[Ethereum]]_ is all in there.
+**Note on fancyness**: the paper wants to be fancy and say it doesn't care about the data, but as users we do. This is the `Eth1Data` found in the beacon chain implementations, and is extremely important as it tracks the execution layer results! So basically _what we now know as Ethereum_ is all in there.
 
 ### Justification
 
@@ -200,7 +189,7 @@ Let's do the rounds of a slot $i$ from the point of view of _validator_ $V$:
 * $(A, j') \rightarrow (B, j)$ is a _supermajority link_ from pair $(A, j')$ to pair $(B, j)$ if the attestations with checkpoint edge $(A, j') \rightarrow (B, j)$ have a total weight of more than 2/3 of the stake.
 * Given a view $G$, we define _justified of G_, $J(G)$, as the genesis plus all the blocks such that if $(A, j') \in J(G)$ and $(A, j') \rightarrow (B, j)$  with _supermajority_, the $(B, j) \in J(G)$ as well. Meaning: if there's a supermajority vote for the state transition into $(B, j)$ and the previous state was justified, then the new state is justified.
 
-Time to define $LJ$ and $LE$! Finally. Remember from [[#Blocks and attestation]]? 
+Time to define $LJ$ and $LE$! Finally. Remember from the Blocks and attestation section? 
 
 Given an attestation $\alpha$ and $B = LEBB(block(\alpha))$:
 * $LJ(\alpha)$, the _last justified pair of $\alpha$_, the highest attestation epoch justified pair in $ffgview(block(\alpha)) = view(B)$ . 
@@ -224,10 +213,8 @@ In even plainer English: in the happy case, a justified block will always be the
 
 **Note**: in ideal conditions, $k = 1$, but the paper allows for $k \gt 1$ to account for network latency and other implementation issues. Note that $k \gt 1$ only implies that the justifications could skip blocks, for example: supermajority could vote to go from $B_0 \rightarrow B_2$ (this is $k = 2$). 
 
-![[Supermajority and finalization.png]]
-
 ### LMD GHOST
-The [[Fork Choice Rule]]. It has many _ifs_ and _buts_ which may be read on the paper, but the idea is that presented with a fork, the chain with the most _validations_ wins.
+The Fork Choice Rule for the protocol. It has many _ifs_ and _buts_ which may be read on the paper, but the idea is that presented with a fork, the chain with the most _validations_ wins.
 
 ### Slashing conditions
 The slashing conditions are only two, and are quite simple to understand:
