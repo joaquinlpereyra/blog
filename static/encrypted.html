@@ -19,9 +19,9 @@
 
         function displayKeyForm() {
             const contentDiv = document.getElementById('content');
+
             contentDiv.innerHTML = `
                 <div style="text-align: center; margin: 2em; font-size: 1.5em;">
-                    <p><strong>Attention:</strong></p>
                     <p>If you have a key for this URL, enter it below:</p>
                     <form id="keyForm">
                         <input type="text" id="keyInput" placeholder="Enter your key here">
@@ -72,8 +72,8 @@
         }
 
         // Placeholders to be replaced by the Rust program
-        const encryptedHTML = "bI2K3rXTiUxjQrl+Y2vpJrPrmNNdwYCTR/Pzu6exPBTc8jGrGq9/c5FFDink9fGsbeb6mttxBAgfHsG1LcWjyTVFXg9Wfw==";
-        const b64iv = "HxwdnLmwGPaSEEoi";
+        const encryptedHTML = "VTasQEtiPpNi4WZdCBNrsJ_mvpp-86GcGCJR9Cc3VV-2SSfgAtGK2mCCzI_aoVcjzUfAdnXtN2tn4DBUjiWrXuUNJiNc-g";
+        const b64iv = "Cp3_9RlQCAXPImjT";
 
         // Look for the key in the URL params
         const urlParams = new URLSearchParams(window.location.search);
