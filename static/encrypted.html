@@ -72,17 +72,9 @@
         }
 
         // Placeholders to be replaced by the Rust program
-        const encryptedHTML = "VTasQEtiPpNi4WZdCBNrsJ_mvpp-86GcGCJR9Cc3VV-2SSfgAtGK2mCCzI_aoVcjzUfAdnXtN2tn4DBUjiWrXuUNJiNc-g";
-        const b64iv = "Cp3_9RlQCAXPImjT";
-
-        // Look for the key in the URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        const passphrase = urlParams.get('key');
-        if (passphrase) {
-            decryptContent(passphrase);
-        } else {
-            displayKeyForm();
-        }
+        const encryptedHTML = "0yTIv67035QtpZ+iUjy0k9wdfnMCUwB/aNf6w62nt7Fc6U8P41wu4iebBpdGAGDo33MQJA5l1Hina5cSLFvnyKtxG3ddfg==";
+        const b64iv = "bzo0/7AJaNf3Xrcp";
+        displayKeyForm();
     </script>
 
 </body>
