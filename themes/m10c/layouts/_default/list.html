@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <article>
+    <h1>{{ .Title }}</h1>
+    <span>🇬🇧</span>
+    <ul class="posts-list">
+      {{ range where .Paginator.Pages "Type" "!=" "page" }}
+        {{ if not (in .Params.tags "spanish") }}
+          <li class="posts-list-item">
+            <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="posts-list-item-description">
+              {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+              {{ .PublishDate.Format "Jan 2, 2006" }}
+              <span class="posts-list-item-separator">-</span>
+              {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+              {{ .ReadingTime }} min read
+            </span>
+          </li>
+        {{ end }}
+      {{end}}
+    </ul>
+
+    <!-- Spanish Section -->
+    <span>🇪🇸</span>
+    <ul class="posts-list">
+      {{ range where .Paginator.Pages "Params.tags" "intersect" (slice "spanish") }}
+        {{ if ne .Type "page" }}
+        <li class="posts-list-item">
+          <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+          <span class="posts-list-item-description">
+            {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
+            {{ .PublishDate.Format "Jan 2, 2006" }}
+            <span class="posts-list-item-separator">-</span>
+            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
+            {{ .ReadingTime }} min read
+          </span>
+        </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+
+
+    {{ partial "pagination.html" $ }}
+  </article>
+{{ end }}
