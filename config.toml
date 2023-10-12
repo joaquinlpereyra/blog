@@ -1,11 +1,11 @@
 baseurl = "https://agaricus.xyz/"
-title = "Agaricus Security"
+title = "A G A R I C U S"
 author = "Joaquin Pereyra"
 canonifyurls = true
 languagecode = "en"
-theme = "hugo-tanka"
+theme = "m10c"
 
-enableEmoji = false
+enableEmoji = true
 hasCJKLanguage = false
 
 pygmentsstyle = "tango"
@@ -14,8 +14,11 @@ pygmentscodefences = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
 [params]
-  sitename = "Agaricus Security"
-  faviconfile = "favicon"
+  sitename = "Agaricus"
+  avatar = "avatar_2.png"
+  faviconfile = "/favicon.ico"
+  author="Joaquin Pereyra"
+  description="Agaricus, like the agora: wild, unpredictable, and fruitful."
   highlightjs = true
   highlightjslanguages = ["r", "python", "golang"]
   uselatex = true
@@ -25,15 +28,23 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
     post = "/post/:year/:month/:day/:slug/"
     note = "/note/:year/:month/:day/:slug/"
 
-[[menu.primary]]
+[[menu.main]]
+    identifier = "home"
     name = "Home"
     url = "/"
     weight = 1
-[[menu.primary]]
-    name = "About Agaricus"
-    url = "/about/"
+[[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about"
     weight = 2
-[[menu.primary]]
-    name = "Public Key"
-    url = "/key/"
-    weight = 3
+
+[[params.social]]
+  icon = "github"
+  name = "Github"
+  url = "https://github.com/joaquinlpereyra"
+
+[[params.social]]
+  icon = "twitter"
+  name = "Twitter"
+  url = "https://x.com/0xmatebabe"

@@ -8,7 +8,7 @@ tags:
 description: "Una lista de preguntas y respuestas sobre mudarme a Uruguay"
 ---
 
-Cada vez que menciono que me mudé de Argentina a Uruguay recibo al menos un par de preguntas de otros interesados en hacer ese cambio. Por lo tanto, acá una recopilación de las preguntas más frencuentes junto a sus respuestas.
+Cada vez que menciono que me mudé de Argentina a Uruguay recibo al menos un par de preguntas de otros interesados en hacer ese cambio. Por lo tanto, acá una recopilación de las preguntas más frecuentes junto a sus respuestas.
 
 Primero, unas bases para entender del contexto en el que me mudé. 
 
@@ -25,13 +25,13 @@ El único tramite de "mudanza" que uno debe hacer es conseguir la cédula de ide
 
 Arrancás el tramite de [Residencia permanente para nacionalies del Mercosur](https://www.gub.uy/tramites/residencia-permanente-nacionales-mercosur-estados-parte-asociados-extranjeros-familiares-uruguayos).
 
-Este tramite se puede arrancar en Argentina, pero tiene una parte que debe ser completada en Urugay: la homologación de las vacunas. Es un trámite sencillo pero requiere viajar a Uruguay. Podés viajar a hacer específicamente esta parte y volver cuando tu cédula (el equivalente al DNI uruguayo) esté lista. También podés mudarte directamente y terminar este trámite ya viviendo en Uruguay. La desventaja de lo segundo es que vas a vivir un tiempo en Uruguay sin cédula, lo que dificulta mucho abrirse una cuenta de banco y hacer algunos otros trámites. 
+Este tramite se puede arrancar en Argentina, pero tiene una parte que debe ser completada en Uruguay: la homologación de las vacunas. Es un trámite sencillo pero requiere viajar a Uruguay. Podés viajar a hacer específicamente esta parte y volver cuando tu cédula (el equivalente al DNI uruguayo) esté lista. También podés mudarte directamente y terminar este trámite ya viviendo en Uruguay. La desventaja de lo segundo es que vas a vivir un tiempo en Uruguay sin cédula, lo que dificulta mucho abrirse una cuenta de banco y hacer algunos otros trámites. 
 
-Una vez que terminás lo de las vacunas, llega un mail para avisarte que podés pasar por la Dirección Nacional de Identificación Civil a retirar tu `Cedula de Identidad Provisoria`. Eso sirve para casi todo lo que vayas a necesitar. Los únicos que me hicieron problemas por tener una cédula de identidad provisoria y no defitiva fueron los bancos. Santander me rechazó abrirme la cuenta. Itaú me abrió después de algunos papeleríos.
+Una vez que terminás lo de las vacunas, llega un mail para avisarte que podés pasar por la Dirección Nacional de Identificación Civil a retirar tu `Cedula de Identidad Provisoria`. Eso sirve para casi todo lo que vayas a necesitar. Los únicos que me hicieron problemas por tener una cédula de identidad provisoria y no definitiva fueron los bancos. Santander me rechazó abrirme la cuenta. Itaú me abrió después de algunos papeleríos.
 
 Esta experiencia puede cambiar depende de la situación: yo no tengo trabajo en relación de dependencia; mi pareja sí. A mi pareja Santander le abrió una cuenta con la cedula de identidad provisoria.
 
-Una vez que tenés la cedula de identidad provisaria, tenes que inscribir tu partida de nacimiento haciendo el tramite de [Inscripción de Partidas Extranjeras](https://www.gub.uy/tramites/inscripcion-partidas-extranjeras). Cuando esto este listo, te llega un mail diciendo que podés pasar a buscar tu `Cedula de Identidad Definitiva`.
+Una vez que tenés la cedula de identidad provisoria, tenes que inscribir tu partida de nacimiento haciendo el tramite de [Inscripción de Partidas Extranjeras](https://www.gub.uy/tramites/inscripcion-partidas-extranjeras). Cuando esto este listo, te llega un mail diciendo que podés pasar a buscar tu `Cedula de Identidad Definitiva`.
 
 # ¿Cuanto tardan los tramites de residencia?
 
@@ -49,7 +49,7 @@ A los seis meses, me comunicaron que puedo retirar mi cédula de identidad defin
 
 # ¿Se pueden llevar muebles a Uruguay?
 
-Lo que buscás se llama "enseres". La respuesta larga es que es complicado, caro, tedioso y lleno de papelerió. La respuesta corta es que no vale la pena no te compliqués. Si tenés auto, pasar por la frontera terrestre con muebles chicos que entren en un auto es super viable. Nosotros trajimos computadoras, una televisión y alguna otra cosa así; pero compramos la mayoría de las cosas de nuevo en Uruguay.
+Lo que buscás se llama "enseres". La respuesta larga es que es complicado, caro, tedioso y lleno de papelerio. La respuesta corta es que no vale la pena no te compliqués. Si tenés auto, pasar por la frontera terrestre con muebles chicos que entren en un auto es super viable. Nosotros trajimos computadoras, una televisión y alguna otra cosa así; pero compramos la mayoría de las cosas de nuevo en Uruguay.
 
 # ¿Los informáticos que trabajan para el exterior no pagan impuestos en Uruguay?
 

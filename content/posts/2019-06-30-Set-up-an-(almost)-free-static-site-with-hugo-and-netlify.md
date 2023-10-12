@@ -4,7 +4,7 @@ date: 2019-06-30 17:28:59
 categories: guide
 ---
 
-This will be a small guide on how I set up this site with hugo and [Netlify](https://netlify.com). I previously used Github Pages but I'm no friend of Jekyll, plus customizations options where limited.
+This will be a small guide on how I set up this site with Hugo and [Netlify](https://netlify.com). I previously used Github Pages but I'm no friend of Jekyll, plus customizations options where limited.
 
 Netlify is free for small teams, and will happily produce the HTML/CSS output from your repository with many supported static site generators. I chose Hugo because it has a binary so I don't need to worry about dependencies, and besides I'm friendly with the Go language in case I need to hack something. 
 

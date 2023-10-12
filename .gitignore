@@ -1,0 +1,7 @@
+content/.obsidian
+resources/_gen
+public
+.hugo_build.lock
+.frontmatter
+.vscode
+frontmatter.json
