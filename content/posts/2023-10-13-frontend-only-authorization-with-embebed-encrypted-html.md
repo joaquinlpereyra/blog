@@ -2,7 +2,7 @@
 title: Frontend-only authorization with embebed encrypted HTML
 description: ""
 date: 2023-10-13T03:39:31.264Z
-draft: true
+draft: false
 tags:
     - cryptography
 slug: frontend-authorization-embebed-encrypted-html
