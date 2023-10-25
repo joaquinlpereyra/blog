@@ -7,8 +7,8 @@ description: "CV"
 ---
 
 # Joaquin L. Pereyra
-**Security Engineer at Coinspect Security**  
-Montevideo, Montevideo, Uruguay
+Working as: **Security Engineer at Coinspect Security**  
+In: Uruguay 🇺🇾
 
 ## Summary
 I am an application security engineer with 8 years of experience combining my knowledge of programming and engineer skills with my passion for information security.
@@ -27,23 +27,23 @@ In the past, I worked at big companies like Mercado Libre, where I led the devel
 ## Experience
 ### Coinspect Security
 **Security Engineer**  
-April 2021 - Present (2 years 7 months)
+April 2021 - Present 
 
 ### Wildlife Studios
 **Application Security Engineer**  
-April 2020 - April 2021 (1 year 1 month)  
+April 2020 - April 2021 
 
 ### IOV Labs
 **Sr. Security Engineer**  
-June 2019 - April 2020 (11 months)  
+June 2019 - April 2020 
 
 ### Mercadolibre.com
 **Web Security Engineer**  
-October 2016 - June 2019 (2 years 9 months)  
+October 2016 - June 2019 
 
 ### Infobyte LLC
 **Software developer**  
-March 2016 - October 2016 (8 months)  
+March 2016 - October 2016 
 
 ## Education
 ### Universidad de Belgrano
