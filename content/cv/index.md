@@ -13,11 +13,16 @@ Montevideo, Montevideo, Uruguay
 ## Summary
 I am an application security engineer with 8 years of experience combining my knowledge of programming and engineer skills with my passion for information security.
 
-I'm working as a lead security auditor for Coinspect. I take responsibility for audits process, including reviewing codebases for vulnerabilities, running systems to perform grey-box testing, programming in-house custom tools to look and confirm for issues, assess risks and threats and communicate with the client and our team.
+I'm working as a lead security auditor for [Coinspect](https://www.coinspect.com/). I take responsibility for audits process, including reviewing codebases for vulnerabilities, running systems to perform grey-box testing, programming in-house custom tools to look and confirm for issues, assess risks and threats and communicate with the client and our team.
 
-Since 2019 I have focused mainly on distributed systems. I worked with IOV Labs to make their Bitcoin sidechain more secure, having directly been in charge of making changes on their EVM implementation to make it more robust and fixing critical vulnerabilities in it.
+Since 2019 I have focused mainly on distributed systems. I worked with [IOV Labs](https://www.iovlabs.org/) to make their Bitcoin sidechain more secure, having directly been in charge of making changes on their EVM implementation to make it more robust and fixing critical vulnerabilities in it.
 
 In the past, I worked at big companies like Mercado Libre, where I led the development of ambitious security tools such as [AFIP](https://github.com/mercadolibre/afip-grails), an in-house static code analysis program.
+
+## Public audits
+
+- [Firm Protocol Audit](https://2196126057-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FiCNdy1jDW7p2hoMSUff8%2Fuploads%2FRCXF2D25uoW69r6yPqMB%2Fv1-coinspect.pdf?alt=media&token=c4b436fe-0119-4c10-84b7-262a7449b5af)
+- [Tinyman Fixes Audit](https://github.com/coinspect/publications/blob/master/Coinspect%20-%20Smart%20Contract%20Update%20Review%20-%20Tinyman%20v220107.pdf)
 
 ## Experience
 ### Coinspect Security
@@ -39,8 +44,6 @@ October 2016 - June 2019 (2 years 9 months)
 ### Infobyte LLC
 **Software developer**  
 March 2016 - October 2016 (8 months)  
-Greater Buenos Aires, Argentina  
-Developer of Faraday, a security program to help manage and create automated reports of pentests. Created the GTK interface of the program and the API which connects the server with the client.
 
 ## Education
 ### Universidad de Belgrano
