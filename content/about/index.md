@@ -6,7 +6,7 @@ tags:
 description: "About page"
 ---
 
-👋 Hey! I'm **Joaquín Pereyra**. I've been working with computers and writing about it for the better part of my life now. I'm around 30 years old and right now I live in [Uruguay]()
+👋 Hey! I'm **Joaquín Pereyra**. I've been working with computers and writing about it for the better part of my life now. I'm around 30 years old and right now I live in Uruguay.
 
 I've worked in the **information security** space since 2016, when I got my first job working on [Faraday](https://github.com/infobyte/faraday). I've since worked at [Mercado Libre](https://www.nasdaq.com/es/market-activity/stocks/meli), [Wildlife Studios](https://wildlifestudios.com/) and [IOV Labs](https://www.iovlabs.org/). 
 
@@ -24,4 +24,4 @@ Nevertheless I've had countless micro-hobbies and I'm usually toying around with
 ## Contact 
 You can contact me via e-mail at joaquin l pereyra @ the google provider you know. 
 
-I also have a [Twitter](https://twitter.com/0xmatebabe) and my [Github profile](https://github.com/joaquinlpereyra)
+I also have a [Twitter](https://twitter.com/0xmatebabe) and my [Github profile](https://github.com/joaquinlpereyra).
