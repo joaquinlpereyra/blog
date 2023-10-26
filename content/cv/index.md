@@ -45,7 +45,7 @@ I am an **application security engineer** with **8 years of experience** combini
 >and utilities for said chain.
 >
 >**Responsibilities & Achievements**
->- Initiated the Security area in the company
+>- First hire for the Security area in the company
 >- Defined initial goals, priorities and strategies 
 >- Researched potential attacks and mitigations 
 >- Directly coded mitigations and fixes for vulnerabilities on the EVM
