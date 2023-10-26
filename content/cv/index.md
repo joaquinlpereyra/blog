@@ -7,11 +7,7 @@ description: "CV"
 ---
 
 # Joaquin Pereyra
-I am an application security engineer with 8 years of experience combining my knowledge of programming and engineer skills with my passion for information security.
-
-I'm working as a lead security auditor for [Coinspect](https://www.coinspect.com/). I take responsibility for audits process, including reviewing codebases for vulnerabilities, running systems to perform grey-box testing, programming in-house custom tools to look and confirm for issues, assess risks and threats and communicate with the client and our team.
-
-I have experience with a myriad of languages, although these days I feel most comfortable with **Golang**, **Rust** or **Python**. 
+I am an **application security engineer** with **8 years of experience** combining my knowledge of programming and engineering skills with my passion for information security. I'm located at **Uruguay**, although I'm originally from Argentina.
 
 # Experience
 ## [Coinspect Security](https://www.coinspect.com/)
