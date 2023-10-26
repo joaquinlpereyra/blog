@@ -15,18 +15,17 @@ I am an application security engineer with 8 years of experience combining my kn
 
 I'm working as a lead security auditor for [Coinspect](https://www.coinspect.com/). I take responsibility for audits process, including reviewing codebases for vulnerabilities, running systems to perform grey-box testing, programming in-house custom tools to look and confirm for issues, assess risks and threats and communicate with the client and our team.
 
-Since 2019 I have focused mainly on distributed systems. I worked with [IOV Labs](https://www.iovlabs.org/) to make their Bitcoin sidechain more secure, having directly been in charge of making changes on their EVM implementation to make it more robust and fixing critical vulnerabilities in it.
+I have experiencia with a myriad of languages, although these days I feel most comfortable with Golang, Rust or Python. 
 
-In the past, I worked at big companies like Mercado Libre, where I led the development of ambitious security tools such as [AFIP](https://github.com/mercadolibre/afip-grails), an in-house static code analysis program.
-
-## Experience
+# Experience
 ### [Coinspect Security](https://www.coinspect.com/)
 **Lead Security Engineer**  (2021 - Present)
+
 Coinspect is a security firm specializing in security for L1s, L2s, sidechains,
 smart contracts and distributed systems design. 
 
 - Lead security assesments and audits
-- - In charge of vulnerability hunting, threat analysis, team coordination and communications with key stakeholders
+- - Vulnerability hunting, threat analysis, team coordination and communications with key stakeholders
 - Research into educational and awareness projects such as [Learn-EVM-Attacks](https://github.com/coinspect/learn-evm-attacks)
 - Contributed to Foundry with [#5044](https://github.com/foundry-rs/foundry/pull/5044) and [#5033](https://github.com/foundry-rs/foundry/pull/5033) and Forge with [#389](https://github.com/foundry-rs/forge-std/pull/389) to add `destroyAccount` cheatcode
 - Developed in-house tooling to both help internal processes and improve our client's security  
@@ -38,6 +37,7 @@ smart contracts and distributed systems design.
 
 ### Wildlife Studios
 **Sr. Application Security Engineer** (2020 - 2021)
+
 Wildlife is one of the top-10 largest mobile-gaming companies. I was the 
 second-hire for the application security team. 
 
@@ -48,6 +48,7 @@ second-hire for the application security team.
 
 ### IOV Labs
 **Sr. Security Engineer**  (2019 - 2020)
+
 IOV Labs develops [RSK/Rootstock](https://rootstock.io/), an EVM-based Bitecoin-sidechain
 and utilities for said chain.
 
@@ -59,6 +60,7 @@ and utilities for said chain.
 
 ### Mercadolibre.com
 **Sr. Application Security Engineer** (2016 - 2019)
+
 MercadoLibre is the biggest eCommerce site in Latin America, NASDAQ traded 
 under the MELI ticker with a market cap of ~60B. 
 
@@ -69,13 +71,19 @@ under the MELI ticker with a market cap of ~60B.
 
 ### Infobyte LLC
 **Software developer**  (2016 - 2016)
+
+Infobyte is an Argentinian company developing [Faraday](https://github.com/infobyte/faraday) 
+and providing information security services to other bussinesses. 
+
 - Worked on the companies open source vulnerability manager, Faraday.
 - Delivered the program's [GTK interface](https://medium.com/faraday/faraday-v1-0-20-is-here-ed038d627ea5)
-
 
 ## Education
 ### Universidad de Belgrano
 **Master’s Degree, Computer Engineering** · (2017 - 2021)
+
+Graduated with a thesis on the status of Ethereum-based Layer-2 Optimisic rollups with 
+a focus on Arbitrum's maturity and threat model.
 
 ### TEA
 **Associate’s Degree, Journalism** · (2013 - 2015)
