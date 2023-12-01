@@ -158,10 +158,6 @@ std::map<util::FixedHash<4>, FunctionTypePointer> ContractDefinition::interfaceF
 }
 ```
 
-> Nothing anything weird? The function is`interfaceFunctions(bool)`, but the caller passed no argument.
-> Don't worry, ccp is not broken. The default argument (specified in the header file) is `true`.
-> BTW, notice that we just found the hash collision protection in solidity? Cool.
-
 ## Getting it all together
 
 This `interfaceFunction` is kind of a lazy method that just calls `interfaceFunctionList`, so let us [check that out](https://github.com/ethereum/solidity/blob/2a2a9d37ee69ca77ef530fe18524a3dc8b053104/libsolidity/ast/AST.cpp#L274-L275):

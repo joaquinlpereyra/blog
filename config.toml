@@ -3,7 +3,7 @@ title = "A G A R I C U S"
 author = "Joaquin Pereyra"
 canonifyurls = true
 languagecode = "en"
-theme = "m10c"
+theme = "hugo-coder"
 
 enableEmoji = true
 hasCJKLanguage = false
@@ -15,9 +15,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 
 [params]
   sitename = "Agaricus"
-  avatar = "avatar_2.png"
-  faviconfile = "/favicon.ico"
-  author="Joaquin Pereyra"
+  avatarurl = "avatar_2.png"
+  faviconSVG = "/favicon.ico"
+  author = "Joaquin Pereyra"
   description="Agaricus, like the agora: wild, unpredictable, and fruitful."
   highlightjs = true
   highlightjslanguages = ["r", "python", "golang"]
@@ -29,27 +29,32 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
     note = "/note/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
+    name = "Blog"
+    url = "/posts/"
     weight = 1
 [[menu.main]]
-    identifier = "about"
     name = "About"
     url = "/about"
     weight = 2
+[[menu.main]]
+    name = "CV"
+    url = "/cv"
+    weight = 3
     
 [[params.social]]
-  icon = "github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
   name = "Github"
   url = "https://github.com/joaquinlpereyra"
 
 [[params.social]]
-  icon = "twitter"
+  icon = "fa fa-twitter fa-2x"
+  weight = 2
   name = "Twitter"
   url = "https://x.com/0xmatebabe"
 
 [[params.social]]
-  icon = "linkedin"
+  icon = "fa fa-linkedin fa-2x"
   name = "Linkedin"
+  weight = 3
   url = "https://linkedin.com/in/joaquinlpereyra"
