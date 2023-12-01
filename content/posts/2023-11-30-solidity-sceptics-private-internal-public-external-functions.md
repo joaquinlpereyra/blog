@@ -1,5 +1,5 @@
 ---
-title: "Solidity Sceptics: The Difference between Private, Internal, Public and External Functions"
+title: "Solidity Sceptics (1): The Difference between Private, Internal, Public and External Functions"
 date: 2023-11-30T18:05:43-03:00
 draft: false
 ---
