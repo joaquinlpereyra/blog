@@ -608,7 +608,7 @@ And we now also know that:
 
 I guess the only thing now to research are the differences between `internal` and `private` functions. This will need at least an introduction to Solidity's inheritance and is the part I'm most dreading researching, so let's be like Courage the Cowardly Dog and keep on going.
 
-![courage the dog as a hacker](courage-dog.png)
+![courage the dog as a hacker](/courage-dog.png)
 
 ## Internal vs Private
 
