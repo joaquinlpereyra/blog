@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Decrypted Site</title>
+</head>
+
+<body>
+
+    <div id="content">
+        <!-- Decrypted content will go here -->
+    </div>
+
+    <script type="text/javascript">
+        function displayFailureMessage() {
+            const urls = [
+                "https://agaricus.xyz/gifs/anime-stop-thats-illegal.gif",
+                "https://agaricus.xyz/gifs/anya-forger-no-oomfie.gif",
+                "https://agaricus.xyz/gifs/smug-anime.gif",
+            ];
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            const chosenUrl = urls[randomIndex];
+
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <div style="text-align: center;">
+                    <h1 style="font-size: 4em; color: pink; font-family: 'Courier New', Courier, monospace;">NOT ALLOWED</h1>
+                    <img src="${chosenUrl}" alt="Meme">
+                </div>`;
+        }
+
+        function displayKeyForm() {
+            const contentDiv = document.getElementById('content');
+
+            contentDiv.innerHTML = `
+                <div style="text-align: center; margin: 2em; font-size: 1.5em;">
+                    <p>If you have a key for this URL, enter it below:</p>
+                    <form id="keyForm">
+                        <input type="text" id="keyInput" placeholder="Enter your key here">
+                        <input type="submit" value="Submit">
+                    </form>
+                    <p>If you don't have a key, this page was not intended for you.</p>
+                </div>
+            `;
+
+            document.getElementById('keyForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const key = document.getElementById('keyInput').value;
+                decryptContent(key);
+            });
+        }
+
+        // Allow the user to just input the key into a hashtag (url.com#foo, foo is the hashtag) 
+        // in the URL 
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let hashKey = window.location.hash.substring(1);  // Remove the '#'
+            if (hashKey) {
+                decryptContent(hashKey);
+            }
+        });
+        
+        // Change the page whenever the hash changes
+        window.addEventListener('hashchange', function() {
+            let hashKey = window.location.hash.substring(1); // Remove the '#'
+            if (hashKey) {
+                decryptContent(hashKey);
+            }
+        });
+
+        // Our Rust program creates URL-safe base64 with no padding for simplicity  
+        // This will convert it back too standard base64 so we can use atob to convert 
+        // it to bytes 
+        function urlSafeToBase64(urlSafeBase64) {
+            let base64 = urlSafeBase64.replace(/-/g, '+').replace(/_/g, '/');
+            let padding = base64.length % 4;
+            if (padding) {
+                base64 += '='.repeat(4 - padding);
+            }
+            return base64;
+        }
+
+        function decryptContent(passphrase) {
+            try {
+                const encryptedHTMLBuffer = Uint8Array.from(atob(urlSafeToBase64(encryptedHTML)), c => c.charCodeAt(0));
+                const iv = Uint8Array.from(atob(urlSafeToBase64(b64iv)), c => c.charCodeAt(0));
+                const keyBuffer = Uint8Array.from(atob(urlSafeToBase64(passphrase)), c => c.charCodeAt(0));
+
+                window.crypto.subtle.importKey(
+                    "raw",
+                    keyBuffer,
+                    "AES-GCM",
+                    false,
+                    ["decrypt"]
+                ).then(function (key) {
+                    return window.crypto.subtle.decrypt(
+                        { name: "AES-GCM", iv: iv },
+                        key,
+                        encryptedHTMLBuffer
+                    );
+                }).then(function (decryptedArrayBuffer) {
+                    const decryptedHTML = new TextDecoder().decode(decryptedArrayBuffer);
+                    document.getElementById('content').innerHTML = decryptedHTML;
+                }).catch(function (e) {
+                    displayFailureMessage();
+                });
+            } catch (e) {
+                displayFailureMessage();
+            }
+        }
+
+        // Placeholders to be replaced by the Rust program
+        const encryptedHTML = "EHlzDW3JqJRQd6fCBE_6OtRy7KTXBv1Yt27ACOr8zBlqo9UtH3PSz5fdGV0yaL0W8XYPKpBhamiM4UfnlWGIxOZpOUk6STdZkDtPJr76eJoEtv7sEVEHU6-b_XR3WzGfb3QX31qkNuikOiAZJ9AYttuvy-5vGCnTGXav-5XlrtU4rJ5YlQk8Wau2IrVi-a4E-kHOShjyf48IO-NCY6g69N8yAGUYfQqX1DeOMSPscc4BxhQSxfy4szVYXZDWQq_iiCt481aMZS5W3t2NNNMCEsKOLw8KnpQzm3B-FpTEzm8G1VvrgOvT4S4yvTOH-SZZJZe0dgRizfI-_psgQQm80KJyfRVxUy76WozWvHrKehN8ZVGi_UAcYLemybyM2uvdiFOZvh9cv5rZLqwK9_N0xxh4_vXbRLSsl_K96ocxYZg4QwBkP1zzPCfykBa7v2sdvG9r5vzYpzsPuYWm1kx5uh2aq21HVuI_s7QSdZw1m4q5TB9eVlxWd2RQA6TW90ZHmpy3VfGLnSxXngMTQbg_Bwe5JWWBRJ3i30lR91AvRv6rgVowSW1J5ydAW-dndP9oVVB_-zkypD-JhKTKBqs77fX7RQ4utxADEx2fvY2qz2pTMOISi-x2MzeQsE7XIvxciOPhvqSz5_4dy9XVNSLJXja_wzDbB1hvlasBFMOgEU6c7ADt7icLiMgIx2ednsCQXuC9d9RW7JotNpBEi-S0Ucd17Lape4epqUA9Oy7aJU7QngRqzZx0LQ0dGe0L-6cNJgMcmbGQ5Cy8sspKa1iEAkUhn1u4NYuUn9BSlGkPtwq47M3uFemef55VHyx1yRMcA4zDQ7lqGWGscycFP3WtyHskTfByBDwI-fRzSYX_xVeOiIuZRiUGkBGXmBJbX2pTSgszgpmlpH-QTqT9gcqldRHEBx0yyE9PBuKARypbwMTp8Vr1wMJxZ8J7yYqn8Yb8v3QXD0aIC1mYJb8OLAeb8TxGvl8F51L7IQLWNSTuU16Z379zOzKRLMYosHn76E8F8Q9T0VqyINK-we6OIwqP5Ber9_K1LO6k8BcXgwtH7neIaVBjbH3sEJsy3qjcHMC-ZwlCMOh8LXt8KEvBzvW5kNekdn07UoxyimL6eC2PU0fzM8SJMVP9746xzA4veWDSD9brVYOZPPnzPdScH01WX4VqBQ6rvzZhEvi765ql0hvoy3XLs6hVqVa3RosyID-TNqap41nEMfBUqX9aEBenW0imJ_OqzrbhGfHkzMQfCLbM1MvoHwo03e3QMhVJywvmCUZboyISrwsUDENlOukHKHgze9_5QIS4pY-yhu2-IaVICPPPcP8tUhwN2BSQFwtV7vTOPfkjrTNXAwLR6ovmHT89rVYFMeq1FAYAjUcIiWs_mhgCej9oVf6rufC9Sj5nmkusv7hTN-y7Z6-FrGX5bOmM_bfROqEzqzHhzBREenwZvpCdFG8cu7Qtr__V2fC0KpE9q9QSP4pu_PFrmQmnrtmene7lDu1KUyFwyFCoV3N1K1WiNkeVqi4lPWEy8LmxdWzwyV2aCXCgCtNfmUcp6EsBElmUmxeC3KyqT1pG_OZCT9Xqv_FXBLudq50YjkBb1_AxH_J--SUONtOrZZXg-gsAh-zSDu_itt8_No7S6MOvMovDEjBvWvkkVTCuxdniFqpTmAJ2gvYSkqXROgrZPWfN8wgCuBMAOkUVdXfiMgX0YX5wMELriqnopQRYwmRSp_2Nehwt-r5PXf2AOUsHyvgDlqpGWF1BMqV5aKM24LQ0Px7OG7FsteRa7vtU4NqkbEXc1kPJwmDm5rcsiwrOdUpdI0Pa8FkagOCEctGNwizPczaMC9qTzlyoGEkLoNW5tXoe83Ob6yedgS1im_-Q28lkSEx0gCGNZkDeaA41CdiCa_XGXR0ZSUsO2gZncCAnVlMDsyUbhPBkkM7FokQcQD-vSIzp4rM6zuXoW3-yrTTOnTBdO8qGK9MlloSdoCI2G8g-eN10geVFpGba6iMzZqreWtD5KbtuGVcFGRkYZVWQXG0KzhlLRzzamzZG_lShzrXZB93TJJOUQytQNU2hJU_OUeF0q2ERNDUMESLsn84kOiRsU6kzu0lf52vDwSM5ZSTI39MjBOjpphWUZMWHnhoM4wTs5NY_tzwdLbKsHXNQ24sObYQEdW79yH1iNMr_TVmeergh4EzE0mFirMW-_a75kHEZt_ZmBSa0JuUAorNZRpbzQ6go-soMpOXu_nxnOCHVClpdVqT8Dy6qSAwLIY49HgGgQV-0VNBvDMUdz_eizRqLfLy4263-8Ucd5jI1BiMbmnN4Z5L0_Cfg5dlaqFV6y1CnBmXYGN8GiwROGEMPXSCTnlDdXVXeT41gYG_DLywQ0_C_5awx34YeQeSAfuLt1iVry27BLlO0YMz1uVriMQ_LB0VXth5aqLHlF707tyRnSDCpMwpk8Vvj2kEcMh26pResC0HicnU7Aj76kXXuN5iXGcpcy5c1JMRez0aoF77deVJdd1AGnAF8v23wCH3GbNT2Nkd9-JqttRoq68EWXnjoF7PvqaNYaeszTbDq6yTWuYXghM71DtEFFBOUQ4FKpz6oJqsSSEDBeQJy1kOYZPEFOA0EWC-IhipJoGTDbRLsPPb8jrUk3sFPqyxZjdGSGZsY4ISEcK3eE-S7kqhdUgX7Z5fRlSKhosNUPjtNvNSn7YNoX8A8zi5Hv_03XGXu5KnBbm6dP9_Iix3ok1BSsfTftrM9MyLk6WuqNu2xIMMlD_AVg2cxaTbxZOPXxf9N_0yURx4tDFvicd5ER-uCaqFFPx1vx45tBri1nfTanLiEr-w5gmkZmsDqxMjcA8N72Rk8IQNT4pdDbXLUIsJgzyP-V-OCr5P5bdaZG_MO-WlZukufP9e5LbjxQHZXsOHmLxlUIct-pTdB2AK7TnLnf44krImdz9yBTns3BwAeihljD7AVDuuKHQrN3jh2-Jg8M1u06VDrpzN8KDYqv1RUlcKEcXaqAvvqymQ8DulCki__0lux2jLS5_00HYiU1TtFpTWJ84TtpfFM1mkY2vy424frLX-37YQyj3W6vJGMjjsOpEG4aUtAzPklwPLDOE4nAvKur17n_8pPB7b3tYbz3iXQCE2wCUI-DUfL2XaWhzTJUF746l7ro8k-VGQyrBXK8Cqr4V8DfaEK7F-g75YiLnwoLGWSndkFVTMKd9ogpn0y-Z6oTdqRsE3CnEaHFeuVsstZdZ8Zb-28NKfv18YbUht50_YdLa3q6arhgE2bQvwqWsypC203U1HhKp8R_fYL8p406YCrJloZpTJUL7AbvE9NBb349heOhlLH2Uaenpnkr9Bq8hdKyYA2eYndBSVnfQBV_Cohu83vzNtCOZuc-LP5x-M9DPGOGPz23Ud1h1XhkNKDiPVcljTBu-B5jcU7StMkT86YF_YzOFbsTFrBWTHMdH6y5xArIuEOakgwpDrUwbJw3KHePw3eo8sf8VS9zwlFiwyYb0BQqnpk2VPkc66c8TZkBBWVGTLPmPCOeSwktoKkeRi6ZixyT8HLiowrW4CL3502UMEpJbgFYlSjnDk2b6POqdQ9_eeXKsmarNSjEu6-7rjEveOBHTiU3d2cxZu73ZeNSlDgr4UfMdNgvJnrhiwfxodt3qlWz2JRYiCHIOYlYSDgrmA2zA1H3-vPU8PuEFCvEycCz26cmSJK_KW8f-t_QPzYsSIxWL0yE0OmDnKtJA3gEgaBBThXwoRrTb4cvBoKqS0P_4glXdCyi8bipDs8AXyHHFK4zW8bFHK0hN2hWOmOB1TwEosVZPu5E0t3yJHJ9rkgwJAPZATG-UK3ygnwIODJXbSp62FVSeIcSK0avn_fuZbTwZJ1z7t_QTe6wSqm-6MvoqBAWCihBLxM6Fz2re3haR5HVi9drwp2CpV2TIGCGgaEZq0lid_a27YSu4eiCAeIzXwah4vO5b82BZwU6nteuLVNAILrVyy_otpCgxCt9cmEINI1OR3gohduqsU0EgpOCwBE1gk2_-w1sfkMuHqT_EszwK-g0j1LixIBWRdSro1iLU1oEeum9ZrphaaIArWpHfc60WwXgomW2imN31Xw4dXLGy9RQ6A2OKqFhIJEWsJl7LxrnN5PKyOQ2ep8yVRq_z5ivS3u4s_lbS4vmf2P7wkFABiRzT8ddk_zL468Zj4mbg3izymkw_C0kTmRZZXErQkEjfN7DD4LdO3qq-zJ6Vzus3LLS4q0COzNm51GXkkSle5J7vFMiw7a2fWsjlHr9oT8plHbmk7O9cbfuN2MoZ8R74f20KCVDO7xBs-C-Q7bVOR7ZAyYnOZtBEnqBVO0OKiN-wb3r9oVAJ_FkytvJOooJXhNIQXSqr9xypimasi4vJvpLZ7tyo3UanaZw6B27NvB-UeSlRq2nyduDUHQc-v5TAhCgh8dBB_00fZMvD3RQ0A9Y76JkMS6usW3OZjmzBv6TFr-KrYQypARGCRs7YTFX1rCHaUO1tyeR3vdRRLsA-wYHPqiru6EzTR_G4YFV0qsHXmsz0O7MbjACNAzfGUwqpAQ1IeaqtlFcQAGhpOUGZmOFTqGGHNDI0_RbOio502hvLYvZBgeGpfIn8LcTyikelykQByZ86BphQKhv9w9q1HAAeIZCJbXNAKTSpjr_CKxK59SYFLch5dsT1emZwG-rjRjXe-_uP0Zqbyp3lm8p1ciUAyxTOey6uWsAdCTQdT9fXgL6YVkSU1HqThGQvXNrTUwOmw66U0mnKQBXy-xlLvlnTyrhdVl0Bmba1arw6qt_Yy0EHskiiflqwX7DfrybZF1YFfOOdHnIbvnUumMj9WcbpD-jlMtUYI7GlTRpOe1Y3d8N3xSVa6j5f5umMj5TOORXiP5Ouije2Cl4ibAkNnK9HJdrl_MKWgfbbw9f7I0A78P9PhB0chyZeHioWu1Nr_EZUe-tVl9pZ7x-mKqL6cptGX4HXRl2oQfcxsc27HeaKgpN4vwXwNohE8qlcN3LbeGsPZ6ZgeKEOhOj83KZjX3MaiyB26CIDCn_OKQ3FO5cBz1DFgRYSyhjfoWnY9KeJTevKdFPOYPJFumXJ72eiP35hZPt9cRl_Xmp3v24bA4PHGJOrRZ4KD_PPhqcr1tCSHcLrXmeTAIyYD249tmgFRmS-yCabbn4fSozptQr4WMpPd28HdLV33JmGZ_50HfVUIFMeA4K3qdy3xISWiUtvaiLoVz2JIEgaCEv_SkTzWO2BhX9ZmMTIh4ZPKhTdWuQXhOUwy4Wsn1LQ3eZh6BukxOQq7nmgGvaB4g27ld0PJ6JqUHbglUNofYIc4lpdzhHsPyH9XIibjONyW1sxlzImrUcQEfxO_Xxm8m7Cn6HtButix5DZk-aGJIMiLq9uMAM_ahP1ogscqtRX3NWcPFMvLWoxp2Jt-MeezRJ4Zt-XnRptr91xq2mDHUIromFgfWEOqEZzayTfwrtxMNLkI1na4yAwVVwG0XmLBwPJRgqX5IpSAdWv2Un2NZs498k7EdebuPFDtfNQ9bwGGP9-Fyp-nbjVef0KE63C3WqehUIQnvL_tIekP00CUJ5sPQBNYjRqV3Mp04pwmMOiYpKqnZZzDJSiwBQQcrJgELLUSDnQ-fi7hN6fmjtJopvysKE-zr9HFCL7MUF6nB8EQvpDAIe5WxC2ZnfPAQE83PtIWMGVDI3PDpP9mdJGcUMaJ5eUy8VsGGepOrKP8sALbhPhGsv7ERESSkooj0usdaK9AjizzB59DNj1FFC-thO5rKc2ljg2Q1JGu5chDXpHjhcJJ-OALSbbHluXW-GkxICJqwWPZ8mAARV15TNcxzrcYKN9oHjrbunmiQJbldyo0-vkdk3hdlr7JEz7zrMRFf9EA7sc-pPThxBeOeE8wMgjX9JxPFrua_hGT483fRdhyHmiBOD7IsTqf3z1vNwh4yiFKn_AuJK01Ejn5muXEWizRlTpI-j5vsBWPdO0N0sNJu193Go5KUosSc0l-xg4TrutnRYqqE_gmS3fOTe2EFZGDHdrciJeOWMqtAmbBHvlMTMVdcHwP05BrgaNVymcR7unjRO6b6ovAAOgO5HmUZjMcjNvR5EM-9Ig-B3SS1AkJq0mBOzHosUFhLJXCF6KH9Lvwt3YUbIrZ5pLsuAku3QvHPCO98lcNw5aBpAGoQ8IEKn1Sc67hK-LTED_9VP0mzhiAn-1iJ0q3Gb-At1ayRq2oLyFZMk8uIgjESbtHKraxZWtcpXF-mXRIzqihpe9P2LQzldRHFxmonwNX_W16U9L3pPO3n0num6BEi_QJFctLa3E6hPEDQgpB108H3lJnQdoyQyEVzhdlGsj_S0QfQPTVVagds3OmO0ekhY8ci5hvEhl_UxaL4Xd1VGM8C04KLTGkdl3Qk_b0seOuF509qHiWr554f66WKkFGYcljT1uZciVdQbNrzmMFzC7CM-GljCJzt8u5njMUOJ7al1Ioo1le98bBtxN-p95F8EW8hyShfSxv4uS9EjZlGHLf-bjklXpX7KhHa7LeoW1gP3jkGSC4IGFyLbWfsSYRKs0lMIYwrj3R4FfgGslzirL9XLEa6Lu4aOkjZwjRPvI6HEK1O_aMUBHF9iHEI5MPYKaicc_cJAVEw1rxHrmtc_c8Ia0PgakRUla375lktHlYA0GXUv5nrhsE7Dgzro-OUyFDdJzgEBqUX6u__UXoRfkYuO2GgBaUvN8Jl9yN3Bm3pgSBaO6V4TgWNuOAFRQv2JIlkxY2aWvxgspZ81aDYrdt5zcL2tQMbc3REIJtbF_8Rh5FgKE8qT92fwC63EzKN4xNuS2zvLTg8_Bg6F0I73S8PNxGM5CjRRrm-9FPdixmauZgeUOm1htTEmIzQUpOlRBv7gUY8uVlaI7k__ihsWm_z5SSosbCtjW6uqhiQhCkHOXTgeA5tiHc21shqlRWWPNqBQop0bo25PNgGBzvSENocvMuyu1FdUTGlShb6pBJGkMie0-Sy1sGvRpl-cnbco2t4CsPsmBh0Z7Z0ZB-tY64Oo8uCVTbS5ZFq8IidrBWk4SjHwlu3TX26Mr1mDQG97zZHlx2lef21X63H60jN8H7KD8ezfHo50VGtj-WONQVlp26AFR3rGXn7qCHbHJVRDs8P4ou_q7D6HiBV8xZoiQfDe8eIW4O9rl6Yr2WMfJ-4GOMU11H7mYVcDkR41RqW-apozluq9-yKQdMG-9W8h4cXDiyxxHxoOfRs13-geNgY0gHQ4KGWHBGpEBd7d8NAWdjyVXnpJmPvfQ7866hF8cs1z6k0XA3jf6fAPTyZ20Ox4KKqa7ERDCiZV_bRR8xtOJkPg9s8tLoK2_irmM5voXlpv9MFtVJVu0XHpZK6B3ExWWdHqxtpdDz7R-iET-4fM0Su_CEvLBmINkH8SHG3EG_8ai8iDRCGSUQC-h0FrELmxt_l6kf7qiA0LTra8893zE3p_sXGqXBOuTarsAzZkNzFaiEUS6NBhCM0cFCmXZJHbgw8IknSbQ1bNEPWoHXWNw-E_vZ_U4wIRJ2Q4jMfVbFO30OWaJeCjYjNeBOrYyWEYfK2kC4yvU5ECBVN8oNzS7TMk-7a233m-toRO7W7RobNmM_vI_mQf9kzwTdUFhE62NfsGAAeksjvoPX4IEFrfkU1y6Sc65gQCHF4Wb2mXB83J_c4yvugUn_d6d_qxHvZ541ywYfenMHN0S8spI7Wt1QYMsKJIYmQeWgCzb-ATW4CxRlOw7Jby1jTFLCOm_JfxB55PnPDDNR-XteMxCySFbfdRA-Dtz29JoL5m02mtRIVqB0j0tTo-5yxeChgdI6HODKpC_4_4jJL6CBWcmJs-9gyWeCTgSl5fMRSbMirNwgF8s3UWlw_EBBJefpyPqxyCEEGo7N_sAAYyxoBlPf53d7qdfOUt1pQ-AQgmHm4ZX-oW-yKdYGOCNsy7knhjjYu9AuPydLNz4jT_BVvXoOgZsXKmxHeuXi_RMxdwIARkYPvLnK9PJMDA8Z3R6tai02EsXySacV40M4PZ7eqd0v7VVBj8uM6GHzzQFmP6oAtKxjr3SyjAbZqA-1Y8T3b7Nqsh8c8hY_AYjrgfQPb8GlEvbsXI7S-FTLOZwKZMSbOiNjLDQ5QzZiDSKZRJMONUDBQrJHNQ5-4tqcO2tAhPUov_7VYYxwVmrShKZ096ZEJFPhP8yX1_BJu9eyKbZLlHvMauWRJCFolMYXcV7fXap_3m4IYlXzi3N0kE0GJgMaZk3_AHWAac17UPmV2nK--NfN2f3Tq7V2FWfvy5A7NmliML_e7M5S5Vq4dRnv48I24cvXzPdGGdywK-1WC0NK1VrTlxFQeQhuX3ksxcvH0S4fgg_h8UBCDLN1uQbeYYV6g9EyiYalz-9PPV1q5CVtnUJpuc-j1GxDYJikRqo-dgn7gXvxtkPTyV0ERM9VTDncCAz2MS3_lDYyxdtbzBA-D-RWPgpo9p1NBb-ENzH-KxB7h3b-wxGwqP6TGDdpNZlHU8PfYi1ddevb0h7NUgI3Qn22QYEYt2Z55irxE5us1HW3ChArBLG6J1R8UODvfnBLRY-JKsSoqFvT1RkY0Pugpyfnidck_-llJF_3T06NR5fmhKI8kKl3kVWRcNJXqNc2Y45JntuZbk8xJ43IBTFEncKQ5HLsM8QQLurI64Oru84DdL-5XT4zreRp_VXKlpWMpyG81IQuHdo3u0jEV5j3iKAES9yBZTDhEYx5CZr6drF_yfY2aQeiLTS7grSlDJkYE-PmOJBZvrSdFG67YTwOctI4SRL8jNnbcGxFdAuImwJ06Fi2p6_eniEyqJnFY7TcZwNilIURsJghH2kjiOdc2ZeXZeEae5LLZgsQ62etg0dpyOdrHMBTjtUYb56IT-tDH1fr8PdtZAZgiY0RR8CqFVTvvcwYLZPV7mzpFStwXPiAiwmTRORFHN84tx1bVNt0L75_gdKclXiLOsb-1uVpEg6zKrIzMwuJT7lhYiXzOv4QRYpKsasL2vpuxr8WUuT6aYBH-_CqMgmKgMVf55-vyxHzZRQ-JKqa4xLdd-TzACWjFcyLY5RP0Chrl4RINidSbphCE2rxa7W-c-amm3MP0jcGmmM24reADA-8whzypWvn7pCpW2-xBcmf5hppGMJQdpTueWs57IC5GdIGBUmSXfGSqS3wLulr4U20zTP7UTZ41Zh9O2v01IGgOlQxt1wqct-kDDLtU3WJuW3JQ6Br5Tu8EPZDjH8ldWvZDL-FArq4DiDQa-uMaKQLB2nomMxvPE3-k2Qpg0iGLN24";
+        const b64iv = "XccYtjOnK8xqWim_";
+        displayKeyForm();
+    </script>
+
+</body>
+
+</html>
